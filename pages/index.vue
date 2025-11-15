@@ -17,14 +17,14 @@
                         <p>Send Email</p>
                         <span>></span>
                     </div>
-                    <div class="view-resume">
+                    <NuxtLink to="/resume" class="view-resume">
                         <i class="mdi mdi-folder-arrow-down-outline"></i>
                         <p>View Resume</p>
                         <span>></span>
-                    </div>
-                    <div class="view-github">
+                    </NuxtLink>
+                    <div class="view-github" @click="goToGithub">
                         <!-- <i class="mdi mdi-application-brackets-outline"></i> -->
-                         <font-awesome-icon class="icon" icon="fa-brands fa-github" />
+                        <font-awesome-icon class="icon" icon="fa-brands fa-github" />
                         <p>View Github</p>
                         <span>></span>
                     </div>
@@ -207,10 +207,9 @@
                             <i class="icon mdi mdi-chart-tree"></i>
                             <h2>Recents Projects</h2>
                         </div>
-                        <div class="right-side">
+                        <NuxtLink to="/projects" class="right-side">
                             <p>View All <span>></span></p>
-                            
-                        </div>
+                        </NuxtLink>
                     </div>
                     <div class="projects-body">
                         <div class="project">
@@ -276,9 +275,9 @@
                             <i class="mdi mdi-certificate-outline"></i>
                             <h2>Certifications</h2>
                         </div>
-                        <div class="right-side">
+                        <NuxtLink to="/certifications" class="right-side">
                             <p>View All <span>></span></p>
-                        </div>
+                        </NuxtLink>
                     </div>
                     <div class="certifications-body">
                         <div class="certificate">
@@ -301,39 +300,39 @@
                         <h2>Socials</h2>
                     </div>
                     <div class="socials-body">
-                        <div class="social">
+                        <div class="social" @click="goToLinkedin">
                             <img src="../assets/img/socials/linkedin.png" alt="linkedin">
                             <div class="text">
                                 <h4>Linkedin</h4>
                                 <p>peter.ayono</p>
                             </div>
                         </div>
-                        <div class="social">
+                        <div class="social" @click="goToGithub">
                             <img src="../assets/img/socials/github.png" alt="github">
                             <div class="text">
                                 <h4>Github</h4>
                                 <p>codex-pet</p>
                             </div>
                         </div>
-                        <div class="social">
+                        <div class="social" @click="goToInstagram"> 
                             <img src="../assets/img/socials/instagram.png" alt="instagram">
                             <div class="text">
                                 <h4>Instagram</h4>
                                 <p>p3tirrr_</p>
                             </div>
                         </div>
-                        <div class="social">
+                        <div class="social" @click="goToFacebook">
                             <img src="../assets/img/socials/facebook.png" alt="facebook">
                             <div class="text">
                                 <h4>Facebook</h4>
                                 <p>peter.ayono</p>
                             </div>
                         </div>
-                        <div class="social">
+                        <div class="social" @click="goToTiktok">
                             <img src="../assets/img/socials/tiktok.png" alt="tiktok">
                             <div class="text">
                                 <h4>Tiktok</h4>
-                                <p>peter.ayono</p>
+                                <p>pitirrrr</p>
                             </div>
                         </div>
                     </div>
@@ -350,6 +349,26 @@
 
     </div>
 </template>
+
+<script setup>
+
+const goToGithub = () => {
+  window.open('https://github.com/codex-pet', '_blank');
+};
+const goToInstagram = () => {
+  window.open('https://www.instagram.com/p3tirrrr_/', '_blank');
+};
+const goToFacebook = () => {
+  window.open('https://www.facebook.com/peter.ayono/', '_blank');
+};
+const goToTiktok = () => {
+  window.open('https://www.tiktok.com/@pitirrrrr', '_blank');
+};
+const goToLinkedin = () => {
+  window.open('https://github.com/codex-pet', '_blank');
+};
+
+</script>
 
 <style scoped>
 .main-container {
@@ -434,6 +453,8 @@
                     margin-right: 20px;
                     border: 1px solid #DADADA;
                     cursor: pointer;
+                    color: black;
+                    text-decoration: none;
 
                     i {
                         font-size: 20px;
@@ -677,7 +698,7 @@
                 }
 
                 .body {
-                    font-size: 14px;
+                    font-size: 16px;
                 } 
             }
 
@@ -708,6 +729,8 @@
 
                     .right-side {
                         cursor: pointer;
+                        color: black;
+                        text-decoration: none;
 
                         span {
                             margin-left: 10px;
@@ -793,6 +816,8 @@
 
                     .right-side {
                         cursor: pointer;
+                        color: black;
+                        text-decoration: none;
 
                         span {
                             margin-left: 10px;
@@ -825,6 +850,8 @@
                 .socials-title {
                     display: flex;
                     align-items: center;
+                    margin-bottom: 10px;
+
 
                      i {
                         margin-right: 10px;
