@@ -8,14 +8,14 @@
                 </NuxtLink>
                 <p class="title-header">Resume</p>
             </div>
-            <div class="download-btn">
+            <div class="download-btn" @click="downloadResume">
                 <p>Download Resume</p>
                 <i class="mdi mdi-download"></i>
             </div>
         </div>
 
         <div class="main-body">
-            <img src="../assets/img/resume.jpg" alt="">
+            <img src="../assets/img/peter-resume.jpg" alt="">
         </div>
 
         <div class="footer">
@@ -26,7 +26,10 @@
 </template>
 
 <script setup>
-
+const downloadResume = () => {
+  const filePath = '/peter-resume.pdf'; // Path relative to the public directory
+  window.open(filePath, '_blank');
+};
 </script>
 
 <style scoped>
@@ -94,7 +97,7 @@
         align-items: center;
 
         img {
-            width: 100%;
+            width: 80%;
             height: auto
         }
     }

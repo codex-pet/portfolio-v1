@@ -57,30 +57,32 @@
                         <h2>Experience</h2>
                     </div>
                     <div class="experience-body">
-                        <!-- <div class="experience-timeline">
-                            dotdot
-                        </div> -->
                         <div class="experience-text">
+                            <div class="timeline-dot"></div>
                             <h4>Backend Develoer</h4>
                             <p class="company">Raldin Casidar Studios (RCS)</p>
                             <p class="year">2024-2025</p>
                         </div>
                         <div class="experience-text">
+                            <div class="timeline-dot"></div>
                             <h4>Frontend Develoer</h4>
                             <p class="company">Raldin Casidar Studios (RCS)</p>
                             <p class="year">2024-2025</p>
                         </div>
                         <div class="experience-text">
+                            <div class="timeline-dot"></div>
                             <h4>Creatives Committee</h4>
                             <p class="company"> JRMSU Main Campus</p>
                             <p class="year">2023-2025</p>
                         </div>
                         <div class="experience-text">
+                            <div class="timeline-dot"></div>
                             <h4>BS Computer Science</h4>
                             <p class="company">Jose Rizal Memorial State University - Main Campus</p>
                             <p class="year">2023-2025</p>
                         </div>
                         <div class="experience-text">
+                            <div class="timeline-dot"></div>
                             <h4>Freelancer</h4>
                             <p class="company">Self Employed</p>
                             <p class="year">2021-2023</p>
@@ -97,7 +99,7 @@
                             <h2>Tech Stack</h2>
                         </div>
                         <div class="right-side">
-                            <select id="stack" name="stack">
+                            <select id="stack" name="stack" v-model="selectedFilter">
                                 <option value="all">All</option>
                                 <option value="frontend">Frontend</option>
                                 <option value="backend">Backend</option>
@@ -106,81 +108,9 @@
                         </div>
                     </div>
                     <div class="tech-stack-body">
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Vue.js.svg" alt="Vue">
-                            <p>VUE</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/JavaScript.svg" alt="JavaScript">
-                            <p>JAVASCRIPT</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/React.svg" alt="React">
-                            <p>REACT</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Node.js.svg" alt="Node">
-                            <p>NODE.JS</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Python.svg" alt="Python">
-                            <p>PYTHON</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/PHP.svg" alt="PHP">
-                            <p>PHP</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/CSharp.svg" alt="CSharp">
-                            <p>C#(CSharp)</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Nuxt.JS.svg" alt="Nuxt">
-                            <p>NUXT.JS</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Sass.svg" alt="Sass">
-                            <p>SASS</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Bootstrap.svg" alt="Bootstrap">
-                            <p>BOOTSTRAP</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Tailwind.svg" alt="Tailwind">
-                            <p>TAILWIND</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/MongoDB.svg" alt="MongoDB">
-                            <p>MONGODB</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/MySQL.svg" alt="MySQL">
-                            <p>MYSQL</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Git.svg" alt="Git">
-                            <p>GIT</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/GitHub.svg" alt="GitHub">
-                            <p>GITHUB</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/VSCode.svg" alt="VSCode">
-                            <p>VSCODE</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Firebase.svg" alt="Firebase">
-                            <p>FIREBASE</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Ionic.svg" alt="Ionic">
-                            <p>IONIC</p>
-                        </div>
-                        <div class="stack">
-                            <img src="../assets/img/stacks/Figma.svg" alt="Figma">
-                            <p>FIGMA</p>
+                        <div class="stack" v-for="stack in filteredStacks" :key="stack.name">
+                            <img :src="stack.imageSrc" :alt="stack.name">
+                            <p>{{ stack.name.toUpperCase() }}</p>
                         </div>
                     </div>
                 </div>
@@ -351,6 +281,39 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
+
+const selectedFilter = ref('all');
+
+const techStacks = ref([
+    { name: 'Vue', imageSrc: new URL('../assets/img/stacks/Vue.js.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'JavaScript', imageSrc: new URL('../assets/img/stacks/JavaScript.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'React', imageSrc: new URL('../assets/img/stacks/React.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'Node.js', imageSrc: new URL('../assets/img/stacks/Node.js.svg', import.meta.url).href, category: 'backend' },
+    { name: 'Python', imageSrc: new URL('../assets/img/stacks/Python.svg', import.meta.url).href, category: 'backend' },
+    { name: 'PHP', imageSrc: new URL('../assets/img/stacks/PHP.svg', import.meta.url).href, category: 'backend' },
+    { name: 'C#(CSharp)', imageSrc: new URL('../assets/img/stacks/CSharp.svg', import.meta.url).href, category: 'backend' },
+    { name: 'Nuxt.JS', imageSrc: new URL('../assets/img/stacks/Nuxt.JS.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'Sass', imageSrc: new URL('../assets/img/stacks/Sass.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'Bootstrap', imageSrc: new URL('../assets/img/stacks/Bootstrap.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'Tailwind', imageSrc: new URL('../assets/img/stacks/Tailwind.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'MongoDB', imageSrc: new URL('../assets/img/stacks/MongoDB.svg', import.meta.url).href, category: 'backend' },
+    { name: 'MySQL', imageSrc: new URL('../assets/img/stacks/MySQL.svg', import.meta.url).href, category: 'backend' },
+    { name: 'Git', imageSrc: new URL('../assets/img/stacks/Git.svg', import.meta.url).href, category: 'tools' },
+    { name: 'GitHub', imageSrc: new URL('../assets/img/stacks/GitHub.svg', import.meta.url).href, category: 'tools' },
+    { name: 'VSCode', imageSrc: new URL('../assets/img/stacks/VSCode.svg', import.meta.url).href, category: 'tools' },
+    { name: 'Firebase', imageSrc: new URL('../assets/img/stacks/Firebase.svg', import.meta.url).href, category: 'backend' },
+    { name: 'Ionic', imageSrc: new URL('../assets/img/stacks/Ionic.svg', import.meta.url).href, category: 'frontend' },
+    { name: 'Figma', imageSrc: new URL('../assets/img/stacks/Figma.svg', import.meta.url).href, category: 'tools' },
+]);
+
+const filteredStacks = computed(() => {
+    if (selectedFilter.value === 'all') {
+        return techStacks.value;
+    } else {
+        return techStacks.value.filter(stack => stack.category === selectedFilter.value);
+    }
+});
 
 const goToGithub = () => {
   window.open('https://github.com/codex-pet', '_blank');
@@ -365,7 +328,7 @@ const goToTiktok = () => {
   window.open('https://www.tiktok.com/@pitirrrrr', '_blank');
 };
 const goToLinkedin = () => {
-  window.open('https://github.com/codex-pet', '_blank');
+  window.open('https://www.linkedin.com/in/peter-ayono/', '_blank'); // Corrected to a LinkedIn URL
 };
 
 </script>
@@ -567,12 +530,30 @@ const goToLinkedin = () => {
                 
                 .experience-body {
                     border-left: 3px solid #D9D9D9;
+                    border-radius: 5px;
                     padding-left: 30px;
                     margin-left: 10px;
                     margin-top: 20px;
+                    position: relative; 
+
 
                     .experience-text {
                         margin-bottom: 10px;
+                        position: relative;
+
+
+                        .timeline-dot {
+                            position: absolute;
+                            left: -38px; 
+                            top: 8px; 
+                            width: 13px;
+                            height: 13px;
+                            border-radius: 50%;
+                            background-color: black; 
+                            border-color: black;
+                        }
+
+                       
 
                         h4 {
                             font-size: 16px;
@@ -646,7 +627,7 @@ const goToLinkedin = () => {
                     flex-wrap: wrap;
                     gap: 20px 15px; 
                     margin-top: 20px;
-                    margin-bottom: 25px;
+                    margin-bottom: 8px;
 
 
                     .stack {
