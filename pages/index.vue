@@ -334,6 +334,17 @@ const goToLinkedin = () => {
 </script>
 
 <style scoped>
+/* Add this new rule for the hover effect */
+[style*="cursor: pointer"], a, button, .send-email, .view-resume, .view-github, .project, .stack, .certificate, .social, select, input[type="radio"] {
+    transition: transform 0.2s ease-in-out;
+}
+
+[style*="cursor: pointer"]:hover, a:hover, button:hover, .send-email:hover, .view-resume:hover, .view-github:hover, .project:hover, .stack:hover, .certificate:hover, .social:hover, select:hover, input[type="radio"]:hover {
+    transform: translateY(-5px);
+    /* transform: scaleY(1.05); */
+}
+
+
 .main-container {
     max-width: 950px;
     width: 100%;
@@ -345,11 +356,20 @@ const goToLinkedin = () => {
         display: flex;
         padding:40px 0;
 
-        img{
+        img {
             width: 190px;
             height: 190px;
             border-radius: 20px;
+            object-fit: cover; 
 
+            &:hover {
+
+                cursor: pointer;
+                /* content: url('../assets/img/cat.jfif');  */
+                content: url('../assets/img/prof-thumb.jpg'); 
+            
+            }
+                
         }
 
         .sub-title {
@@ -638,6 +658,7 @@ const goToLinkedin = () => {
                         border-radius: 6px;
                         border: 1px solid #DADADA;
                         background-color: #FFFFFF;
+                        cursor: pointer;
                         
 
 

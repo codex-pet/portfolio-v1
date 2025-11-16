@@ -25,7 +25,7 @@
                 </div>
                 <div class="divider"></div>
                 <div class="actions">
-                    <div class="live-demo">
+                    <div class="live-demo" @click="goToBbud">
                         <i class="mdi mdi-webcam"></i>
                         <p>Live Demo</p>
                     </div>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="divider"></div>
                 <div class="actions">
-                    <div class="live-demo">
+                    <div class="live-demo" @click="goToMediseen">
                         <i class="mdi mdi-webcam"></i>
                         <p>Live Demo</p>
                     </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="divider"></div>
                 <div class="actions">
-                    <div class="live-demo">
+                    <div class="live-demo" @click="goToAngelsweb">
                         <i class="mdi mdi-webcam"></i>
                         <p>Live Demo</p>
                     </div>
@@ -106,9 +106,9 @@
                 </div>
                 <div class="divider"></div>
                 <div class="actions">
-                    <div class="live-demo">
+                    <div class="live-demo" @click="goToAngelsapp">
                         <i class="mdi mdi-webcam"></i>
-                        <p>Live Demo</p>
+                        <p>View Code</p>
                     </div>
                     <div class="view-details">
                         <i class="mdi mdi-eye-outline"></i>
@@ -124,9 +124,22 @@
         </div>
     </div>
 </template>
-<script setup>
 
+<script setup>
+const goToBbud = () => {
+  window.open('https://b-bud.online/', '_blank');
+};
+const goToMediseen = () => {
+  window.open('https://mediseen.vercel.app/', '_blank');
+};
+const goToAngelsweb = () => {
+  window.open('https://angels-pizza.com/', '_blank');
+};
+const goToAngelsapp = () => {
+  window.open('https://github.com/DavidHeartBenetez/ionic-vue', '_blank');
+};
 </script>
+
 <style scoped>
 .main-container {
     max-width: 1110px;
