@@ -239,7 +239,8 @@ const projectDetails = {
             'Automated certificate and permit generation.',
             'Community announcements and alerts.',
             'Secure role-based access for barangay officials.',
-            'Integrated reporting and analytics dashboard.'
+            'Integrated reporting and analytics dashboard.',
+            'AI Document Validation.'
         ],
         contributors: [
             { name: 'Raldin Casidar', role: 'Senior Web Developer' },
@@ -249,7 +250,7 @@ const projectDetails = {
         sourceCodeUrl: 'https://github.com/user/bbud-repo',
         liveDemoUrl: 'https://b-bud.online/',
         liveDemoText: 'Live Demo',
-        longDescription: 'B-Bud is a comprehensive Barangay Management System designed to streamline administrative processes, manage resident records, and facilitate communication within the local community.'
+        longDescription: 'Modernize your local governance with B-Bud, a smart management system designed to connect the barangay with its people. Beyond simplifying admin tasks and record management, B-Bud offers a mobile app where residents can easily request paperwork, handle transactions, and stay informed with the latest news—all secured by intelligent AI document validation.'
     },
     mediseen: {
         name: 'MediSeen',
@@ -265,9 +266,8 @@ const projectDetails = {
         ],
         features: [
             'Search for medicines by name or generic equivalent.',
-            'Locate nearby pharmacies with available stock.',
-            'Compare prices and view store hours.',
-            'User reviews and ratings for pharmacies.',
+            'Secure role-based access for Admins.',
+            'User reviews and ratings for system enhancement.',
             'Real-time inventory updates.'
         ],
         contributors: [
@@ -279,7 +279,7 @@ const projectDetails = {
         sourceCodeUrl: 'https://github.com/user/mediseen-repo',
         liveDemoUrl: 'https://mediseen.vercel.app/',
         liveDemoText: 'Live Demo',
-        longDescription: 'MediSeen helps users locate and find information about medicines available in nearby pharmacies. It provides details on availability, pricing, and alternatives to ensure users can find the medication they need.'
+        longDescription: 'MediSeen is your dedicated search engine for medication knowledge. Instantly look up any drug to understand exactly how to use it, its potential side effects, and vital safety precautions for your well-being. Plus, you can join the conversation by leaving comments and sharing your experience to help others.'
     },
     angelsweb: {
         name: "Angel's Pizza",
