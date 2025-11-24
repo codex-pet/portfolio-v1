@@ -192,9 +192,10 @@
                             <p>Contributor/s</p>
                         </div>
                         <div class="wrap-people">
-                            <div class="people" v-for="contributor in selectedProject.contributors" :key="contributor.name">
+                            <div class="people" v-for="contributor in selectedProject.contributors" :key="contributor.name" :class="{ 'clickable': contributor.link }" @click="goTo(contributor.link)">
                                 <p class="name">{{ contributor.name }}</p>
                                 <p class="role">{{ contributor.role }}</p>
+                                <i v-if="contributor.link" class="mdi mdi-open-in-new icon-link"></i>
                             </div>
                         </div>
                     </div>
@@ -243,11 +244,11 @@ const projectDetails = {
             'AI Document Validation.'
         ],
         contributors: [
-            { name: 'Raldin Casidar', role: 'Senior Web Developer' },
-            { name: 'Peter Robert Ayono', role: 'Frontend & Backend Developer' },
-            { name: 'Earl Jarvy Almosera', role: 'UI/UX Designer' }
+            { name: 'Raldin Casidar', role: 'Senior Web Developer', link: 'https://github.com/raldincasidar-studio' },
+            { name: 'Peter Robert Ayono', role: 'Frontend & Backend Developer', link: 'https://github.com/codex-pet' },
+            { name: 'Earl Jarvy Almosera', role: 'UI/UX Designer', link: 'https://www.facebook.com/earljarvy.almocera.1'}
         ],
-        sourceCodeUrl: 'https://github.com/user/bbud-repo',
+        sourceCodeUrl: 'https://github.com/raldincasidar-studio/b-bud-v2',
         liveDemoUrl: 'https://b-bud.online/',
         liveDemoText: 'Live Demo',
         longDescription: 'Modernize your local governance with B-Bud, a smart management system designed to connect the barangay with its people. Beyond simplifying admin tasks and record management, B-Bud offers a mobile app where residents can easily request paperwork, handle transactions, and stay informed with the latest news—all secured by intelligent AI document validation.'
@@ -271,12 +272,12 @@ const projectDetails = {
             'Real-time inventory updates.'
         ],
         contributors: [
-            { name: 'Raldin Casidar', role: 'Senior Web Developer' },
-            { name: 'Peter Robert Ayono', role: 'Frontend & Backend Developer' },
-            { name: 'Erl Yves Tagaro', role: 'Frontend Developer' },
-            { name: 'Earl Jarvy Almosera', role: 'UI/UX Designer' },
+            { name: 'Raldin Casidar', role: 'Senior Web Developer', link: 'https://github.com/raldincasidar-studio' },
+            { name: 'Peter Robert Ayono', role: 'Frontend & Backend Developer', link: 'https://github.com/codex-pet' },
+            { name: 'Earl Jarvy Almosera', role: 'UI/UX Designer', link: 'https://www.facebook.com/earljarvy.almocera.1'},
+            { name: 'Erl Yves Tagaro', role: 'Frontend Developer', link: 'https://www.facebook.com/rlyvs.py'}
         ],
-        sourceCodeUrl: 'https://github.com/user/mediseen-repo',
+        sourceCodeUrl: 'https://github.com/raldincasidar-studio/mediseen',
         liveDemoUrl: 'https://mediseen.vercel.app/',
         liveDemoText: 'Live Demo',
         longDescription: 'MediSeen is your dedicated search engine for medication knowledge. Instantly look up any drug to understand exactly how to use it, its potential side effects, and vital safety precautions for your well-being. Plus, you can join the conversation by leaving comments and sharing your experience to help others.'
@@ -301,10 +302,10 @@ const projectDetails = {
             'Responsive design for desktop and mobile.'
         ],
         contributors: [
-            { name: 'Raldin Casidar', role: 'Senior Web Developer' },
-            { name: 'Peter Robert Ayono', role: 'Frontend Developer' },
-            { name: 'Erl Yves Tagaro', role: 'Frontend Developer' },
-            { name: 'Earl Jarvy Almosera', role: 'Frontend Developer' },
+            { name: 'Raldin Casidar', role: 'Senior Web Developer', link: 'https://github.com/raldincasidar-studio' },
+            { name: 'Peter Robert Ayono', role: 'Frontend Developer', link: 'https://github.com/codex-pet' },
+            { name: 'Earl Jarvy Almosera', role: 'Frontend Developer', link: 'https://www.facebook.com/earljarvy.almocera.1'},
+            { name: 'Erl Yves Tagaro', role: 'Frontend Developer', link: 'https://www.facebook.com/rlyvs.py'}
         ],
         sourceCodeUrl: 'https://github.com/user/angelsweb-repo',
         liveDemoUrl: 'https://angels-pizza.com/',
@@ -331,10 +332,10 @@ const projectDetails = {
             'Offline access to the menu.'
         ],
         contributors: [
-            { name: 'Raldin Casidar', role: 'Senior Web Developer' },
-            { name: 'Peter Robert Ayono', role: 'Frontend Developer' },
-            { name: 'Erl Yves Tagaro', role: 'Frontend Developer' },
-            { name: 'Earl Jarvy Almosera', role: 'Frontend Developer' },
+            { name: 'Raldin Casidar', role: 'Senior Web Developer', link: 'https://github.com/raldincasidar-studio' },
+            { name: 'Peter Robert Ayono', role: 'Frontend Developer', link: 'https://github.com/codex-pet' },
+            { name: 'Earl Jarvy Almosera', role: 'Frontend Developer', link: 'https://www.facebook.com/earljarvy.almocera.1'},
+            { name: 'Erl Yves Tagaro', role: 'Frontend Developer', link: 'https://www.facebook.com/rlyvs.py'}
         ],
         sourceCodeUrl: 'https://github.com/DavidHeartBenetez/ionic-vue',
         liveDemoUrl: 'https://github.com/DavidHeartBenetez/ionic-vue',
@@ -1027,12 +1028,25 @@ const goTo = (url) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px; /* Adjusted gap slightly */
     border: 1px solid #c4bfbf;
     border-radius: 12px;
-    padding: 8px;
+    padding: 12px 8px; /* Added slightly more padding */
     max-width: 357px;
     width: 100%;
+    position: relative; /* For positioning optional icon */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.people.clickable {
+    cursor: pointer;
+}
+
+.people.clickable:hover {
+    border-color: #333;
+    background-color: #f9f9f9;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .people .name {
@@ -1045,6 +1059,14 @@ const goTo = (url) => {
     background-color: #e0e0e0;
     padding: 8px 12px;
     border-radius: 20px;
+}
+
+.icon-link {
+    font-size: 14px;
+    color: #888;
+    position: absolute;
+    top: 8px;
+    right: 10px;
 }
 
 .footer-modal {
