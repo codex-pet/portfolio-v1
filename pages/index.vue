@@ -12,7 +12,7 @@
                 <p class="role">Frontend \ Backend Developer</p>
                 <p class="typing-text">turning caffeine into code</p>
                 <div class="sub-title-btn">
-                    <div class="send-email">
+                    <div class="send-email" @click="openModal">
                         <i class="mdi mdi-email-outline"></i>
                         <p>Send Email</p>
                         <span>></span>
@@ -272,9 +272,42 @@
 
         </div>
 
-        <div class="footer">
-            <div class="border"></div>
-            <i class="mdi mdi-copyright"> 2025 Peter Ayono. All rights reserved.</i>
+        <Footer />
+
+
+        <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
+            <div class="modal-content">
+                <button class="close-btn" @click="closeModal"><i class="mdi mdi-close"></i></button>
+                <h2>Book an Appointment</h2>
+                <p class="modal-subtitle">Let's discuss your project.</p>
+
+                <form @submit.prevent="submitForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" v-model="formData.user_name" required placeholder="John Doe" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" v-model="formData.user_email" required placeholder="john@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Requested Date</label>
+                        <input type="date" id="date" v-model="formData.booking_date" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" v-model="formData.message" rows="4" required placeholder="Tell me about your project..."></textarea>
+                    </div>
+
+                    <p v-if="statusMessage" :class="['status-message', isError ? 'error' : 'success']">
+                        {{ statusMessage }}
+                    </p>
+
+                    <button type="submit" class="submit-btn" :disabled="isLoading">
+                        {{ isLoading ? 'Sending...' : 'Send Request' }}
+                    </button>
+                </form>
+            </div>
         </div>
 
     </div>
@@ -282,6 +315,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import emailjs from '@emailjs/browser';
 
 const selectedFilter = ref('all');
 
@@ -331,6 +365,72 @@ const goToLinkedin = () => {
   window.open('https://www.linkedin.com/in/peter-ayono/', '_blank'); // Corrected to a LinkedIn URL
 };
 
+// --- NEW MODAL & EMAIL LOGIC ---
+const isModalOpen = ref(false);
+const isLoading = ref(false);
+const statusMessage = ref('');
+const isError = ref(false);
+
+const formData = reactive({
+    user_name: '',
+    user_email: '',
+    booking_date: '',
+    message: ''
+});
+
+const openModal = () => {
+    isModalOpen.value = true;
+    document.body.style.overflow = 'hidden'; // Prevents background scrolling when modal is open
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+    document.body.style.overflow = 'auto'; // Restores scrolling
+    
+    // Reset form and messages
+    formData.user_name = '';
+    formData.user_email = '';
+    formData.booking_date = '';
+    formData.message = '';
+    statusMessage.value = '';
+};
+
+const submitForm = async () => {
+    isLoading.value = true;
+    statusMessage.value = '';
+    isError.value = false;
+
+    try {
+        // IMPORTANT: Replace these 3 strings with your actual EmailJS credentials
+        await emailjs.send(
+            'service_dyrreof',   // Service ID
+            'template_px2liwd',  // Template ID
+            {
+                user_name: formData.user_name,
+                user_email: formData.user_email,
+                booking_date: formData.booking_date,
+                message: formData.message,
+            },
+            '9PnU7pwATrMKd12iW'    // Public Key
+        );
+        
+        statusMessage.value = 'Success! Your request has been sent.';
+        isError.value = false;
+        
+        // Auto-close modal after 2 seconds
+        setTimeout(() => {
+            if(isModalOpen.value) closeModal();
+        }, 2000);
+
+    } catch (error) {
+        console.error('FAILED...', error);
+        statusMessage.value = 'Failed to send message. Please try again later.';
+        isError.value = true;
+    } finally {
+        isLoading.value = false;
+    }
+};
+
 </script>
 
 <style scoped>
@@ -350,6 +450,8 @@ const goToLinkedin = () => {
     width: 100%;
     height: auto;
     margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px; 
     /* outline: 1px solid red; */
 
     .main-title {
@@ -748,21 +850,28 @@ const goToLinkedin = () => {
                     
 
                     .project {
-                        padding: 10px 20px;
+                        /* 1. Increased padding for a larger, more premium feel */
+                        padding: 20px; 
                         border-radius: 20px;
                         border: 1px solid #DADADA;
-                        max-width: 276px;
-                        width: 100%;
+                        width: calc(50% - 7.5px); 
                         cursor: pointer;
+
+                        /* 2. Added flexbox to control the inner height and spacing */
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between; /* Pushes icons up, and content down */
+                        min-height: 80px; /* <--- Change this number (e.g., 170px) if you need them even taller */
 
                         .title {
                             display: flex;
                             justify-content: space-between;
+                            margin-bottom: 15px; /* Ensures a gap if screen gets small */
 
                             i {
                                 font-size: 20px;
                             }
-                        } 
+                        }  
 
                         .body {
                             display: flex;
@@ -774,7 +883,12 @@ const goToLinkedin = () => {
 
                             .text {
                                 h4 {
-                                    font-size: 20px;
+                                    font-size: 18px; 
+                                    margin-bottom: 3px; /* slight gap between title and desc */
+                                }
+                                p {
+                                    font-size: 13px; 
+                                    line-height: 1.2;
                                 }
                             }
                         }
@@ -901,24 +1015,220 @@ const goToLinkedin = () => {
        }
     }
 
-    .footer {
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
-
-        .border {
-            border-top: 1px solid #DADADA;
-            width: 800px;
-        }
-
-        i {
-            padding: 25px;
-        }
-    }
 }
 
+/* --- MODAL STYLES --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
+.modal-content {
+    background: var(--card-bg, #ffffff); /* Adapts if you use dark mode variables */
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.modal-subtitle {
+    color: gray;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: transparent;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: black;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+.status-message {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.status-message.success { color: #28a745; }
+.status-message.error { color: #dc3545; }
+
+/* TABLET SCREENS (Under 950px) */
+@media (max-width: 950px) {
+    /* Collapse the multi-column grids into single columns */
+    .main-container .main-body .row-one,
+    .main-container .main-body .row-three,
+    .main-container .main-body .row-four {
+        grid-template-columns: 1fr;
+    }
+
+    /* Remove the left margin from the experience section since it's now stacked */
+    .main-container .main-body .row-one .experience {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+
+}
+
+/* MOBILE SCREENS (Under 650px) */
+@media (max-width: 650px) {
+    /* Main Header Stacking */
+    .main-container .main-title {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        position: relative; 
+    }
+
+    .main-container .main-title .sub-title {
+        margin-left: 0;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-container .main-title .sub-title .address {
+        justify-content: center;
+    }
+
+    .main-container .main-title .dark-light {
+        position: absolute;
+        top: 20px;
+        right: 0;
+    }
+
+    /* Button Stacking */
+    .main-container .main-title .sub-title .sub-title-btn {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .main-container .main-title .sub-title .sub-title-btn > div,
+    .main-container .main-title .sub-title .sub-title-btn > a {
+        margin-right: 0;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Reduce internal padding of all boxed sections on mobile to prevent "squishing" */
+    .main-container .main-body .row-one .about,
+    .main-container .main-body .row-one .experience,
+    .main-container .main-body .row-two .tech-stack,
+    .main-container .main-body .row-three .beyond-syntax,
+    .main-container .main-body .row-three .projects,
+    .main-container .main-body .row-four .certifications,
+    .main-container .main-body .row-four .socials {
+        padding: 15px; 
+    }
+
+    /* Tech Stack Header adjust */
+    .main-container .main-body .row-two .tech-stack .tech-stack-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* Section Header spacing */
+    .main-container .main-body .row-three .projects .projects-title,
+    .main-container .main-body .row-four .certifications .certifications-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* ----- NEW PROJECT CARDS MOBILE FIX ----- */
+    .main-container .main-body .row-three .projects .projects-body {
+        flex-direction: column; /* Forces the flex wrapper to stack vertically */
+    }
+
+    .main-container .main-body .row-three .projects .projects-body .project {
+        width: 100%; /* Takes up the full width of the phone screen */
+        min-height: 130px; /* Reduces the height slightly so it looks better on mobile */
+    }
+    /* ---------------------------------------- */
+
+    /* Ensure social text doesn't overflow */
+    .main-container .main-body .row-four .socials .socials-body .social .text h4 {
+        word-break: break-all;
+    }
+}
 </style>

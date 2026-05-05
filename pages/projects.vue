@@ -119,10 +119,8 @@
             </div>
         </div>
 
-        <div class="footer">
-            <div class="border"></div>
-            <i class="mdi mdi-copyright"> 2025 Peter Ayono. All rights reserved.</i>
-        </div>
+        <Footer />
+
 
         <!-- MODAL -->
         <div v-if="selectedProject" class="modal-overlay" @click.self="closeModal">
@@ -375,17 +373,45 @@ const goTo = (url) => {
 </script>
 
 <style scoped>
+/* =========================================
+   GLOBAL STYLES & HOVER EFFECTS
+   ========================================= */
+[style*="cursor: pointer"], a, .live-demo, .view-details, .source-code, .demo, .close-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+.live-demo:hover, .view-details:hover {
+    transform: translateY(-2px);
+    color: #555;
+}
+
+/* Hover effect for the whole project card */
+.bbud-section, .mediseen-section, .angelsweb-section, .angelsapp-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.bbud-section:hover, .mediseen-section:hover, .angelsweb-section:hover, .angelsapp-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.back-btn:hover i {
+    transform: translateX(-5px);
+}
+
 .main-container {
     max-width: 1110px;
     width: 100%;
     height: auto;
     margin: 0 auto;
-    /* outline: 1px solid red; */
+    
+    /* FIX: Added padding so content doesn't touch phone edges */
+    padding: 0 20px;
+    box-sizing: border-box;
 
     .main-header {
         display: flex;
         align-items: center;
-        padding:40px 0;
+        padding: 40px 0;
 
         .back-btn {
             display: flex;
@@ -394,8 +420,6 @@ const goTo = (url) => {
             padding-right: 20px;
             color: black;
             text-decoration: none;
-
-
 
             i {
                 font-size: 30px;
@@ -414,29 +438,31 @@ const goTo = (url) => {
     }
 
     .main-body {
-        display:grid;
+        display: grid;
         gap: 1.5rem;
         grid-template-columns: repeat(2, 1fr); 
         grid-template-rows: repeat(2, auto); 
 
-        .bbud-section {
-            max-width: 549px;
+        /* Applied to all project sections to keep code DRY */
+        .bbud-section, .mediseen-section, .angelsweb-section, .angelsapp-section {
+            max-width: 100%; /* Changed from 549px to 100% so it fits the grid cell perfectly */
             width: 100%;
             border: 1px solid #DADADA;
             border-radius: 25px;
+            overflow: hidden; /* Ensures the image doesn't break the border-radius */
+            background-color: var(--card-bg, #ffffff);
 
             .splash-img {
-                border-top-right-radius: 25px;
-                border-top-left-radius: 25px;
+                width: 100%; /* Ensures image fits perfectly */
                 border-bottom: 1px solid #DADADA;
+                display: block; /* Removes weird image gap at the bottom */
             }
          
             .main-title {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px 20px;
-
+                padding: 15px 20px;
 
                 .title {
                     display: flex;
@@ -452,10 +478,10 @@ const goTo = (url) => {
                     }
                 }
 
-
                 .stacks {
                     display: flex;
-                    gap: 20px;
+                    gap: 10px; /* Reduced slightly to fit better on medium screens */
+                    flex-wrap: wrap; /* Allows icons to wrap if space gets tight */
 
                     img {
                         width: 30px;
@@ -466,7 +492,8 @@ const goTo = (url) => {
 
             .divider {
                 border-bottom: 1px solid #DADADA;
-                width: 500px;
+                /* FIX: Changed from 500px to fluid calc so it doesn't cause scrolling on phones */
+                width: calc(100% - 40px); 
                 margin: 0 auto;
             }
 
@@ -474,353 +501,27 @@ const goTo = (url) => {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                padding: 10px 20px;
-                margin: 6px 0px;
+                padding: 15px 20px; /* Standardized padding */
 
-                .live-demo {
+                .live-demo, .view-details {
                     display: flex;
                     align-items: center;
                     cursor: pointer;
 
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px; 
-                        
-                    }
-
-                }
-
-                .view-details {
-                    display: flex;
-                    align-items: center;
-                    border-radius: 6px;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px;
-                        
-                    }
+                    i { font-size: 20px; }
+                    p { margin: 0 10px; font-weight: 500; }
                 }
             }
-
-            
-        }
-
-        .mediseen-section {
-            max-width: 549px;
-            width: 100%;
-            border: 1px solid #DADADA;
-            border-top: 0px;
-            border-radius: 25px;
-
-            .splash-img {
-                border-top-right-radius: 25px;
-                border-top-left-radius: 25px;
-                border-bottom: 1px solid #DADADA;
-            }
-         
-            .main-title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 20px;
-
-
-                .title {
-                    display: flex;
-                    flex-direction: column;
-
-                    h4 {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        font-size: 14px;
-                        font-weight: lighter;
-                    }
-                }
-
-
-                .stacks {
-                    display: flex;
-                    gap: 20px;
-
-                    img {
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
-            }
-
-            .divider {
-                border-bottom: 1px solid #DADADA;
-                width: 500px;
-                margin: 0 auto;
-            }
-
-            .actions {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 20px;
-                margin: 6px 0px;
-
-                .live-demo {
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px;
-                        
-                    }
-
-                }
-
-                .view-details {
-                    display: flex;
-                    align-items: center;
-                    border-radius: 6px;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px;
-                        
-                    }
-                }
-            }
-
-            
-        }
-
-        .angelsweb-section {
-            max-width: 549px;
-            width: 100%;
-            border: 1px solid #DADADA;
-            border-top: 0px;
-            border-radius: 25px;
-
-
-            .splash-img {
-                border-top-right-radius: 25px;
-                border-top-left-radius: 25px;
-                border-bottom: 1px solid #DADADA;
-                
-            }
-         
-            .main-title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 20px;
-
-
-                .title {
-                    display: flex;
-                    flex-direction: column;
-
-                    h4 {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        font-size: 14px;
-                        font-weight: lighter;
-                    }
-                }
-
-
-                .stacks {
-                    display: flex;
-                    gap: 20px;
-
-                    img {
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
-            }
-
-            .divider {
-                border-bottom: 1px solid #DADADA;
-                width: 500px;
-                margin: 0 auto;
-            }
-
-            .actions {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 20px;
-                margin: 6px 0px;
-
-                .live-demo {
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px; 
-                        
-                    }
-
-                }
-
-                .view-details {
-                    display: flex;
-                    align-items: center;
-                    border-radius: 6px;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px; 
-                        
-                    }
-                }
-            }
-
-            
-        }
-
-        .angelsapp-section {
-            max-width: 549px;
-            width: 100%;
-            border: 1px solid #DADADA;
-            border-top: 0px;
-            border-radius: 25px;
-
-            .splash-img {
-                border-top-right-radius: 25px;
-                border-top-left-radius: 25px;
-            }
-         
-            .main-title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 20px;
-
-
-                .title {
-                    display: flex;
-                    flex-direction: column;
-
-                    h4 {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        font-size: 14px;
-                        font-weight: lighter;
-                    }
-                }
-
-
-                .stacks {
-                    display: flex;
-                    gap: 20px;
-
-                    img {
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
-            }
-
-            .divider {
-                border-bottom: 1px solid #DADADA;
-                width: 500px;
-                margin: 0 auto;
-            }
-
-            .actions {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 20px;
-                margin: 6px 0px;
-
-                .live-demo {
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px; 
-                        
-                    }
-
-                }
-
-                .view-details {
-                    display: flex;
-                    align-items: center;
-                    border-radius: 6px;
-                    cursor: pointer;
-
-                    i {
-                        font-size: 20px;
-                    }
-
-                    p {
-                        margin:0 10px;
-                        
-                    }
-                }
-            }
-
-            
         }
     }
 
-     .footer {
-        margin-top: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
-
-        .border {
-            border-top: 1px solid #DADADA;
-            width: 800px;
-        }
-
-        i {
-            padding: 25px;
-        }
-    }
 }
 
 
-/* --- MODIFIED AND NEW MODAL STYLES --- */
+/* =========================================
+   MODAL STYLES
+   ========================================= */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -833,13 +534,15 @@ const goTo = (url) => {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 20px; /* Added padding so modal doesn't touch screen edges on mobile */
+    box-sizing: border-box;
 }
 
 .modal-content {
     background: white;
     border-radius: 16px;
     max-width: 1200px;
-    width: 95%;
+    width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     max-height: 95vh;
     display: flex;
@@ -852,6 +555,7 @@ const goTo = (url) => {
     border-bottom: 1px solid #DADADA;
     background-color: white;
     position: relative;
+    flex-shrink: 0; /* Prevents header from squishing */
 }
 
 .header {
@@ -863,6 +567,7 @@ const goTo = (url) => {
 .title p {
     font-size: 30px;
     font-weight: bold;
+    padding-right: 40px; /* Prevents text from hiding under the close button */
 }
 
 .close-btn {
@@ -874,33 +579,26 @@ const goTo = (url) => {
     font-size: 28px;
     cursor: pointer;
     color: #888;
-    transition: color 0.3s ease;
 }
 
-.close-btn:hover {
-    color: #333;
-}
+.close-btn:hover { color: #333; transform: scale(1.1); }
 
 .sub-header {
     display:flex;
     align-items: center;
     padding-top: 5px;
+    flex-wrap: wrap; /* Allows wrap on mobile */
+    gap: 15px;
 }
 
 .sub-title {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-right: 20px;
 }
 
-.sub-title i {
-    font-size: 20px;
-}
-
-.sub-title p {
-    font-size: 16px;
-}
+.sub-title i { font-size: 20px; }
+.sub-title p { font-size: 16px; }
 
 /* --- SCROLLABLE BODY --- */
 .body-wrapper {
@@ -909,7 +607,7 @@ const goTo = (url) => {
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px; /* Slightly increased gap for breathing room */
 }
 
 /* --- Minimal Scrollbar Styling --- */
@@ -917,19 +615,13 @@ const goTo = (url) => {
     scrollbar-width: thin;
     scrollbar-color: #4F4F4F transparent;
 }
-.body-wrapper::-webkit-scrollbar {
-    width: 6px;
-}
-.body-wrapper::-webkit-scrollbar-track {
-    background: transparent;
-}
+.body-wrapper::-webkit-scrollbar { width: 6px; }
+.body-wrapper::-webkit-scrollbar-track { background: transparent; }
 .body-wrapper::-webkit-scrollbar-thumb {
     background-color: #4F4F4F;
     border-radius: 20px;
 }
-.body-wrapper::-webkit-scrollbar-thumb:hover {
-    background-color: #828282;
-}
+.body-wrapper::-webkit-scrollbar-thumb:hover { background-color: #828282; }
 
 .image-wrapper {
     display: flex;
@@ -945,12 +637,11 @@ const goTo = (url) => {
 
 .status {
     text-align:center;
-    font-weight: 400;
-    background-color: #e0e0e0;
-    padding: 8px;
+    font-weight: 500;
+    background-color: #f0f0f0;
+    padding: 8px 20px;
     border-radius: 20px;
-    max-width: 300px;
-    width: 100%;
+    display: inline-block;
 }
 
 .color {
@@ -969,33 +660,32 @@ const goTo = (url) => {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 .overview .title-overview i,
 .tools .title-tools i,
 .features .title-features i,
-.contributors .title-contributors i {
-    font-size: 30px;
-}
+.contributors .title-contributors i { font-size: 26px; }
 
 .overview .title-overview p,
 .tools .title-tools p,
 .features .title-features p,
 .contributors .title-contributors p {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .description {
-    padding-top: 10px;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
 }
 
 .stack-images {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 10px 20px;
 }
 
 .stack-images img {
@@ -1003,70 +693,65 @@ const goTo = (url) => {
     height: 40px;
 }
 
-.features .list {
-    padding: 10px 30px;
-}
-
 .features ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-left: 20px;
 }
 
 .features li {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #444;
 }
 
 .contributors .wrap-people {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding-top: 10px ;
+    gap: 15px;
 }
 
 .people {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px; /* Adjusted gap slightly */
-    border: 1px solid #c4bfbf;
+    gap: 5px; 
+    border: 1px solid #DADADA;
     border-radius: 12px;
-    padding: 12px 8px; /* Added slightly more padding */
+    padding: 15px 10px; 
     max-width: 357px;
     width: 100%;
-    position: relative; /* For positioning optional icon */
-    transition: all 0.3s ease; /* Smooth transition */
-}
-
-.people.clickable {
-    cursor: pointer;
+    position: relative; 
 }
 
 .people.clickable:hover {
     border-color: #333;
     background-color: #f9f9f9;
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .people .name {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
+    text-align: center;
 }
 
 .people .role {
     font-size: 12px;
-    background-color: #e0e0e0;
-    padding: 8px 12px;
+    background-color: #f0f0f0;
+    padding: 6px 12px;
     border-radius: 20px;
+    text-align: center;
 }
 
 .icon-link {
     font-size: 14px;
     color: #888;
     position: absolute;
-    top: 8px;
-    right: 10px;
+    top: 10px;
+    right: 12px;
 }
 
 .footer-modal {
@@ -1077,6 +762,7 @@ const goTo = (url) => {
     gap: 20px;
     border-top: 1px solid #DADADA;
     background-color: white;
+    flex-shrink: 0;
 }
 
 .source-code, .demo {
@@ -1084,24 +770,81 @@ const goTo = (url) => {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    cursor: pointer;
     background-color: #e0e0e0;
-    padding: 10px 12px;
+    padding: 12px 20px;
     border-radius: 12px;
     width: 45%;
-    transition: background-color 0.3s ease;
 }
 
-.source-code:hover, .demo:hover {
-    background-color: #d1d1d1;
+.source-code:hover, .demo:hover { background-color: #d1d1d1; }
+.source-code i, .demo i { font-size: 20px; }
+.source-code p, .demo p { font-size: 15px; font-weight: 600; }
+
+
+/* =========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================= */
+
+/* TABLET SCREENS (Under 950px) */
+@media (max-width: 950px) {
+    .main-container .main-body {
+        /* Changes from 2 columns to 1 column on tablets/phones */
+        grid-template-columns: 1fr; 
+    }
 }
 
-.source-code i, .demo i {
-    font-size: 20px;
-}
+/* MOBILE SCREENS (Under 650px) */
+@media (max-width: 650px) {
+    /* Header Stacking */
+    .main-container .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 30px 0 20px 0;
+    }
+    
+    .main-container .main-header .title-header {
+        font-size: 22px;
+    }
 
-.source-code p, .demo p {
-    font-size: 14px;
-    font-weight: 500;
+    /* Card Adjustments */
+    .main-container .main-body .bbud-section .main-title,
+    .main-container .main-body .mediseen-section .main-title,
+    .main-container .main-body .angelsweb-section .main-title,
+    .main-container .main-body .angelsapp-section .main-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* MODAL MOBILE ADJUSTMENTS */
+    .header-wrapper {
+        padding: 20px; /* Reduced padding */
+    }
+
+    .title p {
+        font-size: 24px; /* Smaller title */
+    }
+
+    .body-wrapper {
+        padding: 20px; /* Reduced padding */
+    }
+
+    .overview .title-overview p,
+    .tools .title-tools p,
+    .features .title-features p,
+    .contributors .title-contributors p {
+        font-size: 18px; /* Smaller section titles */
+    }
+
+    .footer-modal {
+        padding: 20px;
+        flex-direction: column; /* Stacks the two bottom buttons */
+        gap: 10px;
+    }
+
+    .source-code, .demo {
+        width: 100%; /* Makes buttons full width on mobile */
+    }
 }
 </style>

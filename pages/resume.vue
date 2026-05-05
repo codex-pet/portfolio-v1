@@ -18,10 +18,8 @@
             <img src="../assets/img/peter-resume.jpg" alt="">
         </div>
 
-        <div class="footer">
-            <div class="border"></div>
-            <i class="mdi mdi-copyright"> 2025 Peter Ayono. All rights reserved.</i>
-        </div>
+        <Footer />
+
     </div>
 </template>
 
@@ -33,29 +31,49 @@ const downloadResume = () => {
 </script>
 
 <style scoped>
+/* =========================================
+   GLOBAL STYLES & HOVER EFFECTS
+   ========================================= */
+[style*="cursor: pointer"], a, .download-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+.back-btn:hover i {
+    transform: translateX(-5px);
+}
+
+.download-btn:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+}
+
 .main-container {
     max-width: 1110px;
     width: 100%;
     height: auto;
     margin: 0 auto;
+    
+    /* FIX 1: Added padding so content doesn't touch phone edges */
+    padding: 0 20px;
+    box-sizing: border-box;
 
     .main-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding:40px 0;
+        padding: 40px 0;
 
         .back-wrapper {
             display: flex;
             align-items: center;
+            gap: 20px; /* Added gap between back button and title */
 
             .back-btn {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding-right: 20px;
-            color: black;
-            text-decoration: none;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                color: black;
+                text-decoration: none;
 
                 i {
                     font-size: 30px;
@@ -80,13 +98,15 @@ const downloadResume = () => {
             border: 1px solid #DADADA;
             border-radius: 8px;
             cursor: pointer;
+            background-color: white;
 
             p {
                 margin-right: 10px;
+                font-weight: 500;
             }
 
             i {
-                font-size: 26px;
+                font-size: 24px;
             }
         }
     }
@@ -95,29 +115,54 @@ const downloadResume = () => {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 10px;
 
         img {
-            width: 80%;
-            height: auto
+            width: 80%; /* Looks good on desktop */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
     }
 
-    .footer {
-        margin-top: 50px;
-        display: flex;
+
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================= */
+
+/* MOBILE SCREENS (Under 768px) */
+@media (max-width: 768px) {
+    .main-container .main-header {
+        /* FIX 3: Stack header elements on mobile */
         flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 30px 0;
+    }
+
+    .main-container .main-header .back-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .main-container .main-header .download-btn {
+        width: 100%; /* Full width button on mobile for easy tapping */
         justify-content: center;
-        align-items: center;
+        box-sizing: border-box;
+    }
 
+    .main-container .main-body img {
+        width: 100%; /* Makes resume larger and more readable on mobile phones */
+    }
+}
 
-        .border {
-            border-top: 1px solid #DADADA;
-            width: 800px;
-        }
-
-        i {
-            padding: 25px;
-        }
+@media (max-width: 480px) {
+    .main-container .main-header .title-header {
+        font-size: 22px; /* Smaller title for very small phones */
     }
 }
 </style>
