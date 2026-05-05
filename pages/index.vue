@@ -59,13 +59,13 @@
                     <div class="experience-body">
                         <div class="experience-text">
                             <div class="timeline-dot"></div>
-                            <h4>Backend Develoer</h4>
+                            <h4>Backend Developer</h4>
                             <p class="company">Raldin Casidar Studios (RCS)</p>
                             <p class="year">2024-2025</p>
                         </div>
                         <div class="experience-text">
                             <div class="timeline-dot"></div>
-                            <h4>Frontend Develoer</h4>
+                            <h4>Frontend Developer</h4>
                             <p class="company">Raldin Casidar Studios (RCS)</p>
                             <p class="year">2024-2025</p>
                         </div>
@@ -135,7 +135,7 @@
                         <div class="left-side">
                             <!-- <font-awesome-icon class="icon" icon="fa-solid fa-project-diagram" /> -->
                             <i class="icon mdi mdi-chart-tree"></i>
-                            <h2>Recents Projects</h2>
+                            <h2>Recent Projects</h2>
                         </div>
                         <NuxtLink to="/projects" class="right-side">
                             <p>View All <span>></span></p>
