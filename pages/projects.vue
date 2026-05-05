@@ -18,10 +18,10 @@
                         <p>Barangay System Management</p>
                     </div>
                     <div class="stacks">
-                        <img src="../assets/img/stacks/Vue.js.svg" alt="vue">
-                        <img src="../assets/img/stacks/Javascript.svg" alt="javascript">
-                        <img src="../assets/img/stacks/Nuxt.JS.svg" alt="nuxt">
-                        <img src="../assets/img/stacks/MongoDB.svg" alt="mongodb">
+                        <img src="/img/stacks/vuejs.svg" alt="vue">
+                        <img src="/img/stacks/javascript.svg" alt="javascript">
+                        <img src="/img/stacks/nuxtjs.svg" alt="nuxt">
+                        <img src="/img/stacks/mongodb.svg" alt="mongodb">
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -45,10 +45,10 @@
                         <p>Medicine Finding System</p>
                     </div>
                     <div class="stacks">
-                        <img src="../assets/img/stacks/Vue.js.svg" alt="vue">
-                        <img src="../assets/img/stacks/Javascript.svg" alt="javascript">
-                        <img src="../assets/img/stacks/Nuxt.JS.svg" alt="nuxt">
-                        <img src="../assets/img/stacks/Firebase.svg" alt="firebase">
+                        <img src="/img/stacks/vuejs.svg" alt="vue">
+                        <img src="/img/stacks/javascript.svg" alt="javascript">
+                        <img src="/img/stacks/nuxtjs.svg" alt="nuxt">
+                        <img src="/img/stacks/firebase.svg" alt="firebase">
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -72,10 +72,10 @@
                         <p>Food E-commerce Website</p>
                     </div>
                     <div class="stacks">
-                        <img src="../assets/img/stacks/Vue.js.svg" alt="vue">
-                        <img src="../assets/img/stacks/Javascript.svg" alt="javascript">
-                        <img src="../assets/img/stacks/Nuxt.JS.svg" alt="nuxt">
-                        <img src="../assets/img/stacks/MongoDB.svg" alt="mongodb">
+                        <img src="/img/stacks/vuejs.svg" alt="vue">
+                        <img src="/img/stacks/javascript.svg" alt="javascript">
+                        <img src="/img/stacks/nuxtjs.svg" alt="nuxt">
+                        <img src="/img/stacks/mongodb.svg" alt="mongodb">
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -99,10 +99,10 @@
                         <p>Food Delivery Application</p>
                     </div>
                     <div class="stacks">
-                        <img src="../assets/img/stacks/Ionic.svg" alt="ionic">
-                        <img src="../assets/img/stacks/Javascript.svg" alt="javascript">
-                        <img src="../assets/img/stacks/Nuxt.JS.svg" alt="nuxt">
-                        <img src="../assets/img/stacks/MongoDB.svg" alt="mongodb">
+                        <img src="/img/stacks/ionic.svg" alt="ionic">
+                        <img src="/img/stacks/javascript.svg" alt="javascript">
+                        <img src="/img/stacks/nuxtjs.svg" alt="nuxt">
+                        <img src="/img/stacks/mongodb.svg" alt="mongodb">
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -228,10 +228,10 @@ const projectDetails = {
         status: 'Completed',
         splashImage: new URL('../assets/img/projects/bbud-splash.png', import.meta.url).href,
         stacks: [
-            new URL('../assets/img/stacks/Vue.js.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Javascript.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Nuxt.JS.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/MongoDB.svg', import.meta.url).href
+            '/img/stacks/vuejs.svg',
+            '/img/stacks/javascript.svg',
+            '/img/stacks/nuxtjs.svg',
+            '/img/stacks/mongodb.svg'
         ],
         features: [
             'Real-time resident data management.',
@@ -258,10 +258,10 @@ const projectDetails = {
         status: 'Completed',
         splashImage: new URL('../assets/img/projects/mediseen-splash.png', import.meta.url).href,
         stacks: [
-            new URL('../assets/img/stacks/Vue.js.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Javascript.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Nuxt.JS.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Firebase.svg', import.meta.url).href
+            '/img/stacks/vuejs.svg',
+            '/img/stacks/javascript.svg',
+            '/img/stacks/nuxtjs.svg',
+            '/img/stacks/firebase.svg'
         ],
         features: [
             'Search for medicines by name or generic equivalent.',
@@ -287,10 +287,10 @@ const projectDetails = {
         status: 'Staging',
         splashImage: new URL('../assets/img/projects/angelsweb-splash.png', import.meta.url).href,
         stacks: [
-            new URL('../assets/img/stacks/Vue.js.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Javascript.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Nuxt.JS.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/MongoDB.svg', import.meta.url).href
+            '/img/stacks/vuejs.svg',
+            '/img/stacks/javascript.svg',
+            '/img/stacks/nuxtjs.svg',
+            '/img/stacks/mongodb.svg'
         ],
         features: [
             'Interactive menu with customization options.',
@@ -317,10 +317,10 @@ const projectDetails = {
         status: 'Staging',
         splashImage: new URL('../assets/img/projects/angelsapp-splash.png', import.meta.url).href,
         stacks: [
-            new URL('../assets/img/stacks/Ionic.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Javascript.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/Nuxt.JS.svg', import.meta.url).href,
-            new URL('../assets/img/stacks/MongoDB.svg', import.meta.url).href
+            '/img/stacks/ionic.svg',
+            '/img/stacks/javascript.svg',
+            '/img/stacks/nuxtjs.svg',
+            '/img/stacks/mongodb.svg'
         ],
         features: [
             'Cross-platform compatibility (iOS and Android).',
@@ -358,13 +358,11 @@ watch(selectedProject, (newVal) => {
   }
 });
 
-// --- Original Link Functions (can be kept for redundancy or removed) ---
 const goToBbud = () => window.open('https://b-bud.online/', '_blank');
 const goToMediseen = () => window.open('https://mediseen.vercel.app/', '_blank');
 const goToAngelsweb = () => window.open('https://angels-pizza.com/', '_blank');
 const goToAngelsapp = () => window.open('https://github.com/DavidHeartBenetez/ionic-vue', '_blank');
 
-// --- Generic Link Function for Modal ---
 const goTo = (url) => {
   if (url) {
     window.open(url, '_blank');
