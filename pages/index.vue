@@ -10,7 +10,7 @@
                     <p>Dipolog City, Philippines</p>
                 </div>
                 <p class="role">Frontend \ Backend Developer</p>
-                <p class="typing-text">turning caffeine into code</p>
+                <p class="typing-text">{{ displayedText }}</p>
                 <div class="sub-title-btn">
                     <div class="send-email" @click="openModal">
                         <i class="mdi mdi-email-outline"></i>
@@ -314,11 +314,63 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import emailjs from '@emailjs/browser';
 import { useTheme } from '~/composables/useTheme';
 
 const { isDark, toggleTheme } = useTheme();
+
+const quotes = [
+    "turning caffeine into code",
+    "building pixel-perfect interfaces",
+    "crafting robust backend systems",
+    "transforming ideas into digital reality",
+    "solving problems, one line at a time",
+    "passionate about clean, scalable code",
+    "bridging design and functionality",
+    "always learning, always evolving",
+    "yawa kapoy naman kaayo ni",
+    "creating seamless user experiences",
+    "architecting the web with passion"
+];
+
+const displayedText = ref('');
+const currentQuoteIndex = ref(0);
+const isDeleting = ref(false);
+const typingSpeed = ref(100);
+let timeoutId = null;
+
+const typeEffect = () => {
+    const currentQuote = quotes[currentQuoteIndex.value];
+    
+    if (isDeleting.value) {
+        displayedText.value = currentQuote.substring(0, displayedText.value.length - 1);
+        typingSpeed.value = 50;
+    } else {
+        displayedText.value = currentQuote.substring(0, displayedText.value.length + 1);
+        typingSpeed.value = 100;
+    }
+
+    if (!isDeleting.value && displayedText.value === currentQuote) {
+        isDeleting.value = true;
+        typingSpeed.value = 2000; // Pause at the end of typing
+    } else if (isDeleting.value && displayedText.value === '') {
+        isDeleting.value = false;
+        currentQuoteIndex.value = (currentQuoteIndex.value + 1) % quotes.length;
+        typingSpeed.value = 500; // Pause before starting next quote
+    }
+
+    timeoutId = setTimeout(typeEffect, typingSpeed.value);
+};
+
+onMounted(() => {
+    typeEffect();
+});
+
+onUnmounted(() => {
+    if (timeoutId) clearTimeout(timeoutId);
+});
+
 
 const selectedFilter = ref('all');
 
@@ -502,6 +554,18 @@ const submitForm = async () => {
 
             .typing-text {
                 font-style: italic;
+                min-height: 1.2em; /* Prevent layout shift */
+                &::after {
+                    content: '|';
+                    margin-left: 2px;
+                    animation: blink 0.7s infinite;
+                    font-style: normal;
+                }
+            }
+
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
             }
 
             .sub-title-btn {
