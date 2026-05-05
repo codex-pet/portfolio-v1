@@ -318,6 +318,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import emailjs from '@emailjs/browser';
 import { useTheme } from '~/composables/useTheme';
 
+const config = useRuntimeConfig();
 const { isDark, toggleTheme } = useTheme();
 
 const quotes = [
@@ -456,17 +457,16 @@ const submitForm = async () => {
     isError.value = false;
 
     try {
-        // IMPORTANT: Replace these 3 strings with your actual EmailJS credentials
         await emailjs.send(
-            'service_dyrreof',   // Service ID
-            'template_px2liwd',  // Template ID
+            config.public.emailjsServiceId,
+            config.public.emailjsTemplateId,
             {
                 user_name: formData.user_name,
                 user_email: formData.user_email,
                 booking_date: formData.booking_date,
                 message: formData.message,
             },
-            '9PnU7pwATrMKd12iW'    // Public Key
+            config.public.emailjsPublicKey
         );
         
         statusMessage.value = 'Success! Your request has been sent.';

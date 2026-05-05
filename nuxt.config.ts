@@ -5,9 +5,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Peter Ayono - Developer', // This changes the text on the tab
+      title: 'Peter Ayono - Developer',
       link: [
-        // This points to the image in your /public folder
+        // Ensure your file in the /public folder is named exactly favicon.ico
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
       ]
     }
@@ -17,5 +17,14 @@ export default defineNuxtConfig({
     '~/assets/css/main.scss',
     '@fortawesome/fontawesome-svg-core/styles.css',
     '@mdi/font/css/materialdesignicons.min.css'
-  ]
+  ],
+
+  runtimeConfig: {
+    // Keys within public are also exposed client-side
+    public: {
+      emailjsServiceId: process.env.EMAILJS_SERVICE_ID,
+      emailjsTemplateId: process.env.EMAILJS_TEMPLATE_ID,
+      emailjsPublicKey: process.env.EMAILJS_PUBLIC_KEY,
+    }
+  }
 })
