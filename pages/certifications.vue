@@ -74,7 +74,7 @@
             align-items: center;
             cursor: pointer;
             padding-right: 20px;
-            color: black;
+            color: var(--text-primary);
             text-decoration: none;
 
             i {
@@ -102,9 +102,9 @@
 
         .certificate {
             padding: 15px 20px;
-            border: 1px solid #DADADA;
+            border: 1px solid var(--border-color);
             border-radius: 10px;
-            background-color: var(--card-bg, #ffffff);
+            background-color: var(--bg-card);
             cursor: pointer;
 
             .title {
@@ -128,7 +128,7 @@
             
             p {
                 font-size: 14px;
-                color: #555; /* Slightly muted text for better hierarchy */
+                color: var(--text-muted); /* Slightly muted text for better hierarchy */
                 line-height: 1.5;
             }
         }

@@ -418,7 +418,7 @@ const goTo = (url) => {
             align-items: center;
             cursor: pointer;
             padding-right: 20px;
-            color: black;
+            color: var(--text-primary);
             text-decoration: none;
 
             i {
@@ -447,14 +447,14 @@ const goTo = (url) => {
         .bbud-section, .mediseen-section, .angelsweb-section, .angelsapp-section {
             max-width: 100%; /* Changed from 549px to 100% so it fits the grid cell perfectly */
             width: 100%;
-            border: 1px solid #DADADA;
+            border: 1px solid var(--border-color);
             border-radius: 25px;
             overflow: hidden; /* Ensures the image doesn't break the border-radius */
-            background-color: var(--card-bg, #ffffff);
+            background-color: var(--bg-card);
 
             .splash-img {
                 width: 100%; /* Ensures image fits perfectly */
-                border-bottom: 1px solid #DADADA;
+                border-bottom: 1px solid var(--border-color);
                 display: block; /* Removes weird image gap at the bottom */
             }
          
@@ -491,7 +491,7 @@ const goTo = (url) => {
             }
 
             .divider {
-                border-bottom: 1px solid #DADADA;
+                border-bottom: 1px solid var(--border-color);
                 /* FIX: Changed from 500px to fluid calc so it doesn't cause scrolling on phones */
                 width: calc(100% - 40px); 
                 margin: 0 auto;
@@ -539,7 +539,7 @@ const goTo = (url) => {
 }
 
 .modal-content {
-    background: white;
+    background: var(--modal-bg);
     border-radius: 16px;
     max-width: 1200px;
     width: 100%;
@@ -552,8 +552,8 @@ const goTo = (url) => {
 
 .header-wrapper {
     padding: 26px 36px;
-    border-bottom: 1px solid #DADADA;
-    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--modal-bg);
     position: relative;
     flex-shrink: 0; /* Prevents header from squishing */
 }
@@ -578,10 +578,10 @@ const goTo = (url) => {
     border: none;
     font-size: 28px;
     cursor: pointer;
-    color: #888;
+    color: var(--close-btn-color);
 }
 
-.close-btn:hover { color: #333; transform: scale(1.1); }
+.close-btn:hover { color: var(--close-btn-hover); transform: scale(1.1); }
 
 .sub-header {
     display:flex;
@@ -638,7 +638,7 @@ const goTo = (url) => {
 .status {
     text-align:center;
     font-weight: 500;
-    background-color: #f0f0f0;
+    background-color: var(--status-bg);
     padding: 8px 20px;
     border-radius: 20px;
     display: inline-block;
@@ -679,7 +679,7 @@ const goTo = (url) => {
 .description {
     font-size: 16px;
     line-height: 1.6;
-    color: #444;
+    color: var(--text-muted);
 }
 
 .stack-images {
@@ -703,7 +703,7 @@ const goTo = (url) => {
 .features li {
     font-size: 16px;
     line-height: 1.5;
-    color: #444;
+    color: var(--text-muted);
 }
 
 .contributors .wrap-people {
@@ -717,7 +717,7 @@ const goTo = (url) => {
     flex-direction: column;
     align-items: center;
     gap: 5px; 
-    border: 1px solid #DADADA;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 15px 10px; 
     max-width: 357px;
@@ -726,8 +726,8 @@ const goTo = (url) => {
 }
 
 .people.clickable:hover {
-    border-color: #333;
-    background-color: #f9f9f9;
+    border-color: var(--text-secondary);
+    background-color: var(--bg-card-hover);
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
@@ -740,7 +740,7 @@ const goTo = (url) => {
 
 .people .role {
     font-size: 12px;
-    background-color: #f0f0f0;
+    background-color: var(--status-bg);
     padding: 6px 12px;
     border-radius: 20px;
     text-align: center;
@@ -748,7 +748,7 @@ const goTo = (url) => {
 
 .icon-link {
     font-size: 14px;
-    color: #888;
+    color: var(--text-light);
     position: absolute;
     top: 10px;
     right: 12px;
@@ -760,8 +760,8 @@ const goTo = (url) => {
     align-items: center;
     padding: 20px 36px;
     gap: 20px;
-    border-top: 1px solid #DADADA;
-    background-color: white;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--modal-bg);
     flex-shrink: 0;
 }
 
@@ -770,13 +770,13 @@ const goTo = (url) => {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: #e0e0e0;
+    background-color: var(--btn-secondary-bg);
     padding: 12px 20px;
     border-radius: 12px;
     width: 45%;
 }
 
-.source-code:hover, .demo:hover { background-color: #d1d1d1; }
+.source-code:hover, .demo:hover { background-color: var(--btn-secondary-hover); }
 .source-code i, .demo i { font-size: 20px; }
 .source-code p, .demo p { font-size: 15px; font-weight: 600; }
 

@@ -30,8 +30,8 @@
                     </div>
                 </div>
             </div>
-            <div class="dark-light">
-                <input type="radio" name="LightorDark" id="">
+            <div class="dark-light" @click="toggleTheme">
+                <i :class="isDark ? 'mdi mdi-weather-night' : 'mdi mdi-white-balance-sunny'"></i>
             </div>
         </div>
 
@@ -238,7 +238,7 @@
                             </div>
                         </div>
                         <div class="social" @click="goToGithub">
-                            <img src="../assets/img/socials/github.png" alt="github">
+                            <img src="../assets/img/socials/github.png" alt="github" class="social-icon-invert">
                             <div class="text">
                                 <h4>Github</h4>
                                 <p>codex-pet</p>
@@ -316,6 +316,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import emailjs from '@emailjs/browser';
+import { useTheme } from '~/composables/useTheme';
+
+const { isDark, toggleTheme } = useTheme();
 
 const selectedFilter = ref('all');
 
@@ -511,8 +514,8 @@ const submitForm = async () => {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background-color: black;
-                    color: white;
+                    background-color: var(--btn-primary-bg);
+                    color: var(--btn-primary-text);
                     border-radius: 6px;
                     padding: 2px 20px;
                     margin-right: 20px;
@@ -524,7 +527,7 @@ const submitForm = async () => {
 
                     p {
                         margin:0 15px; 
-                        
+                        font-size: 13px;
                     }
 
                 }
@@ -536,9 +539,9 @@ const submitForm = async () => {
                     border-radius: 6px;
                     padding: 2px 20px;
                     margin-right: 20px;
-                    border: 1px solid #DADADA;
+                    border: 1px solid var(--border-color);
                     cursor: pointer;
-                    color: black;
+                    color: var(--text-primary);
                     text-decoration: none;
 
                     i {
@@ -547,6 +550,7 @@ const submitForm = async () => {
 
                     p {
                         margin:0 15px; 
+                        font-size: 13px;
                         
                     }
                 }
@@ -558,7 +562,7 @@ const submitForm = async () => {
                     border-radius: 6px;
                     padding: 5px 20px;
                     margin-right: 20px;
-                    border: 1px solid #DADADA;
+                    border: 1px solid var(--border-color);
                     cursor: pointer;
 
                     .icon {
@@ -568,29 +572,35 @@ const submitForm = async () => {
 
                     p {
                         margin:0 15px; 
-                        
+                        font-size: 13px;
                     }
                 }
             }
         }
 
         .dark-light {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            transition: all 0.3s ease;
 
-            input {
-               width: 20px;
-                height: 20px;
-                cursor: pointer;
-                border: 1px solid black;
-                border-radius: 50%;
-                appearance: none;
-                -webkit-appearance: none;
-                background-color: var(--card-bg);
-                outline: none;
-                transition: background-color 0.3s ease;
+            i {
+                font-size: 20px;
+                color: var(--text-primary);
+                transition: transform 0.3s ease;
             }
 
-            input:checked {
-                background-color: black;
+            &:hover {
+                background-color: var(--bg-card-hover);
+                i {
+                    transform: rotate(30deg);
+                }
             }
         }
     }
@@ -606,7 +616,7 @@ const submitForm = async () => {
             .about {
                 padding: 20px 30px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
+                border: 1px solid var(--border-color);
                 .about-title {
                     display:flex;
                     align-items: center;
@@ -631,7 +641,7 @@ const submitForm = async () => {
             .experience {
                 padding: 15px 30px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
+                border: 1px solid var(--border-color);
                 margin-left: 20px;
 
                 .experience-title {
@@ -651,7 +661,7 @@ const submitForm = async () => {
                 }
                 
                 .experience-body {
-                    border-left: 3px solid #D9D9D9;
+                    border-left: 3px solid var(--timeline-border);
                     border-radius: 5px;
                     padding-left: 30px;
                     margin-left: 10px;
@@ -671,8 +681,8 @@ const submitForm = async () => {
                             width: 13px;
                             height: 13px;
                             border-radius: 50%;
-                            background-color: black; 
-                            border-color: black;
+                            background-color: var(--timeline-dot); 
+                            border-color: var(--timeline-dot);
                         }
 
                        
@@ -690,7 +700,7 @@ const submitForm = async () => {
                             width: 100%;
                             padding: 3px 15px;
                             border-radius: 20px;
-                            border: 1px solid #DADADA;
+                            border: 1px solid var(--border-color);
                             font-size: 12px;
                             margin-top: 3px;
                         }
@@ -707,8 +717,8 @@ const submitForm = async () => {
 
                 padding: 20px 30px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
-                background-color: #F5F5F5;
+                border: 1px solid var(--border-color);
+                background-color: var(--bg-secondary);
 
 
                 .tech-stack-title {
@@ -737,8 +747,10 @@ const submitForm = async () => {
                             font-size: 16px;
                             padding: 5px;
                             border-radius: 6px;
-                            border: 1px solid #DADADA;
+                            border: 1px solid var(--border-color);
                             cursor: pointer;
+                            background-color: var(--bg-card);
+                            color: var(--text-primary);
                         } 
                     }
                 }
@@ -758,8 +770,8 @@ const submitForm = async () => {
                         align-items: center;
                         padding: 5px 10px;
                         border-radius: 6px;
-                        border: 1px solid #DADADA;
-                        background-color: #FFFFFF;
+                        border: 1px solid var(--border-color);
+                        background-color: var(--bg-card);
                         cursor: pointer;
                         
 
@@ -784,7 +796,7 @@ const submitForm = async () => {
             .beyond-syntax {
                 padding: 20px 30px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
+                border: 1px solid var(--border-color);
 
                 .title {
                     display: flex;
@@ -809,7 +821,7 @@ const submitForm = async () => {
             .projects {
                 padding: 20px 30px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
+                border: 1px solid var(--border-color);
 
                 .projects-title {
                     display: flex;
@@ -833,7 +845,7 @@ const submitForm = async () => {
 
                     .right-side {
                         cursor: pointer;
-                        color: black;
+                        color: var(--text-primary);
                         text-decoration: none;
 
                         span {
@@ -853,7 +865,7 @@ const submitForm = async () => {
                         /* 1. Increased padding for a larger, more premium feel */
                         padding: 20px; 
                         border-radius: 20px;
-                        border: 1px solid #DADADA;
+                        border: 1px solid var(--border-color);
                         width: calc(50% - 7.5px); 
                         cursor: pointer;
 
@@ -908,7 +920,7 @@ const submitForm = async () => {
 
                 padding: 20px 30px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
+                border: 1px solid var(--border-color);
 
                 .certifications-title {
                     display: flex;
@@ -932,7 +944,7 @@ const submitForm = async () => {
 
                     .right-side {
                         cursor: pointer;
-                        color: black;
+                        color: var(--text-primary);
                         text-decoration: none;
 
                         span {
@@ -949,7 +961,7 @@ const submitForm = async () => {
 
                     .certificate {
                         padding: 15px 20px;
-                        border: 1px solid #DADADA;
+                        border: 1px solid var(--border-color);
                         border-radius: 10px;
 
                     }
@@ -960,8 +972,8 @@ const submitForm = async () => {
             .socials {
                 padding: 20px 25px;
                 border-radius: 25px;
-                border: 1px solid #DADADA;
-                background-color: #F5F5F5;
+                border: 1px solid var(--border-color);
+                background-color: var(--bg-secondary);
 
                 .socials-title {
                     display: flex;
@@ -988,10 +1000,10 @@ const submitForm = async () => {
                         align-items:center;
                         padding: 10px 15px;
                         border-radius: 10px;
-                        border: 1px solid #DADADA;
+                        border: 1px solid var(--border-color);
                         margin-bottom: 10px;
                         cursor: pointer;
-                        background-color: #FFFFFF;
+                        background-color: var(--bg-card);
 
                         img {
                             margin-right: 10px;
@@ -1006,7 +1018,7 @@ const submitForm = async () => {
 
                             p {
                                 font-size: 12px;
-                                color: grey;
+                                color: var(--text-light);
                             }
                         }
                     }
@@ -1025,7 +1037,7 @@ const submitForm = async () => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--modal-overlay);
     backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
@@ -1034,13 +1046,13 @@ const submitForm = async () => {
 }
 
 .modal-content {
-    background: var(--card-bg, #ffffff); /* Adapts if you use dark mode variables */
+    background: var(--modal-bg);
     padding: 30px;
     border-radius: 20px;
     width: 90%;
     max-width: 450px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px var(--shadow-color);
 }
 
 .close-btn {
@@ -1051,21 +1063,21 @@ const submitForm = async () => {
     border: none;
     font-size: 20px;
     cursor: pointer;
-    color: #666;
+    color: var(--close-btn-color);
 }
 
 .close-btn:hover {
-    color: #000;
+    color: var(--close-btn-hover);
 }
 
 .modal-content h2 {
     font-size: 24px;
     margin-bottom: 5px;
-    color: #000;
+    color: var(--text-primary);
 }
 
 .modal-subtitle {
-    color: gray;
+    color: var(--text-light);
     margin-bottom: 20px;
     font-size: 14px;
 }
@@ -1080,30 +1092,31 @@ const submitForm = async () => {
     margin-bottom: 5px;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-secondary);
 }
 
 .form-group input,
 .form-group textarea {
     padding: 12px 15px;
-    border: 1px solid #DADADA;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-family: inherit;
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s;
-    background: transparent;
+    background: var(--bg-card);
+    color: var(--text-primary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: black;
+    border-color: var(--text-primary);
 }
 
 .submit-btn {
     width: 100%;
-    background-color: black;
-    color: white;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
     padding: 12px;
     border: none;
     border-radius: 8px;

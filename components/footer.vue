@@ -14,7 +14,7 @@
     align-items: center;
 
     .border {
-        border-top: 1px solid #DADADA;
+        border-top: 1px solid var(--border-color);
         width: 100%; 
         max-width: 800px;
     }
@@ -23,6 +23,7 @@
         padding: 25px;
         font-size: 11px;
         text-align: center;
+        color: var(--text-muted);
     }
 }
 

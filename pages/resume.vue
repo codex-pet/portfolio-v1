@@ -43,7 +43,7 @@ const downloadResume = () => {
 }
 
 .download-btn:hover {
-    background-color: #f5f5f5;
+    background-color: var(--bg-secondary);
     transform: translateY(-2px);
 }
 
@@ -72,7 +72,7 @@ const downloadResume = () => {
                 display: flex;
                 align-items: center;
                 cursor: pointer;
-                color: black;
+                color: var(--text-primary);
                 text-decoration: none;
 
                 i {
@@ -95,10 +95,10 @@ const downloadResume = () => {
             display: flex;
             align-items: center;
             padding: 10px 20px;
-            border: 1px solid #DADADA;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             cursor: pointer;
-            background-color: white;
+            background-color: var(--bg-card);
 
             p {
                 margin-right: 10px;
@@ -121,8 +121,8 @@ const downloadResume = () => {
             width: 80%; /* Looks good on desktop */
             height: auto;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 1px solid var(--border-color-light);
         }
     }
 
