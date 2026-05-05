@@ -2,7 +2,7 @@
     <div class="main-container">
 
         <div class="main-title">
-            <img src="../assets/img/Assets.png" alt="Profile">
+            <img src="../assets/img/profile.png" alt="Profile">
             <div class="sub-title">
                 <h1>Peter Robert Ayono</h1>
                 <div class="address">
@@ -376,25 +376,25 @@ onUnmounted(() => {
 const selectedFilter = ref('all');
 
 const techStacks = ref([
-    { name: 'Vue', imageSrc: new URL('../assets/img/stacks/vuejs.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'JavaScript', imageSrc: new URL('../assets/img/stacks/javascript.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'React', imageSrc: new URL('../assets/img/stacks/react.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'Node.js', imageSrc: new URL('../assets/img/stacks/nodejs.svg', import.meta.url).href, category: 'backend' },
-    { name: 'Python', imageSrc: new URL('../assets/img/stacks/python.svg', import.meta.url).href, category: 'backend' },
-    { name: 'PHP', imageSrc: new URL('../assets/img/stacks/php.svg', import.meta.url).href, category: 'backend' },
-    { name: 'C#(CSharp)', imageSrc: new URL('../assets/img/stacks/csharp.svg', import.meta.url).href, category: 'backend' },
-    { name: 'Nuxt.JS', imageSrc: new URL('../assets/img/stacks/nuxtjs.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'Sass', imageSrc: new URL('../assets/img/stacks/sass.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'Bootstrap', imageSrc: new URL('../assets/img/stacks/bootstrap.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'Tailwind', imageSrc: new URL('../assets/img/stacks/tailwind.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'MongoDB', imageSrc: new URL('../assets/img/stacks/mongodb.svg', import.meta.url).href, category: 'backend' },
-    { name: 'MySQL', imageSrc: new URL('../assets/img/stacks/mysql.svg', import.meta.url).href, category: 'backend' },
-    { name: 'Git', imageSrc: new URL('../assets/img/stacks/git.svg', import.meta.url).href, category: 'tools' },
-    { name: 'GitHub', imageSrc: new URL('../assets/img/stacks/github.svg', import.meta.url).href, category: 'tools' },
-    { name: 'VSCode', imageSrc: new URL('../assets/img/stacks/vscode.svg', import.meta.url).href, category: 'tools' },
-    { name: 'Firebase', imageSrc: new URL('../assets/img/stacks/firebase.svg', import.meta.url).href, category: 'backend' },
-    { name: 'Ionic', imageSrc: new URL('../assets/img/stacks/ionic.svg', import.meta.url).href, category: 'frontend' },
-    { name: 'Figma', imageSrc: new URL('../assets/img/stacks/figma.svg', import.meta.url).href, category: 'tools' },
+    { name: 'Vue', imageSrc: '/img/stacks/vuejs.svg', category: 'frontend' },
+    { name: 'JavaScript', imageSrc: '/img/stacks/javascript.svg', category: 'frontend' },
+    { name: 'React', imageSrc: '/img/stacks/react.svg', category: 'frontend' },
+    { name: 'Node.js', imageSrc: '/img/stacks/nodejs.svg', category: 'backend' },
+    { name: 'Python', imageSrc: '/img/stacks/python.svg', category: 'backend' },
+    { name: 'Nuxt.JS', imageSrc: '/img/stacks/nuxtjs.svg', category: 'frontend' },
+    { name: 'Sass', imageSrc: '/img/stacks/sass.svg', category: 'frontend' },
+    { name: 'Bootstrap', imageSrc: '/img/stacks/bootstrap.svg', category: 'frontend' },
+    { name: 'Tailwind', imageSrc: '/img/stacks/tailwind.svg', category: 'frontend' },
+    { name: 'MongoDB', imageSrc: '/img/stacks/mongodb.svg', category: 'backend' },
+    { name: 'MySQL', imageSrc: '/img/stacks/mysql.svg', category: 'backend' },
+    { name: 'Git', imageSrc: '/img/stacks/git.svg', category: 'tools' },
+    { name: 'GitHub', imageSrc: '/img/stacks/github.svg', category: 'tools' },
+    { name: 'VSCode', imageSrc: '/img/stacks/vscode.svg', category: 'tools' },
+    { name: 'Firebase', imageSrc: '/img/stacks/firebase.svg', category: 'backend' },
+    { name: 'Ionic', imageSrc: '/img/stacks/ionic.svg', category: 'frontend' },
+    { name: 'Figma', imageSrc: '/img/stacks/figma.svg', category: 'tools' },
+    { name: 'PHP', imageSrc: '/img/stacks/php.svg', category: 'backend' },
+    { name: 'C#(CSharp)', imageSrc: '/img/stacks/csharp.svg', category: 'backend' },
 ]);
 
 const filteredStacks = computed(() => {
