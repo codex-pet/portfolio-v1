@@ -390,7 +390,7 @@ const techStacks = ref([
     { name: 'MongoDB', imageSrc: new URL('../assets/img/stacks/mongodb.svg', import.meta.url).href, category: 'backend' },
     { name: 'MySQL', imageSrc: new URL('../assets/img/stacks/mysql.svg', import.meta.url).href, category: 'backend' },
     { name: 'Git', imageSrc: new URL('../assets/img/stacks/git.svg', import.meta.url).href, category: 'tools' },
-    { name: 'GitHub', imageSrc: new URL('../assets/img/stacks/gitHub.svg', import.meta.url).href, category: 'tools' },
+    { name: 'GitHub', imageSrc: new URL('../assets/img/stacks/github.svg', import.meta.url).href, category: 'tools' },
     { name: 'VSCode', imageSrc: new URL('../assets/img/stacks/vscode.svg', import.meta.url).href, category: 'tools' },
     { name: 'Firebase', imageSrc: new URL('../assets/img/stacks/firebase.svg', import.meta.url).href, category: 'backend' },
     { name: 'Ionic', imageSrc: new URL('../assets/img/stacks/ionic.svg', import.meta.url).href, category: 'frontend' },
